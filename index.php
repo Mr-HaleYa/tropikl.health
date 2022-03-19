@@ -15,7 +15,7 @@ session_start();
 </head>
 <body>
     <div class="wrap">
-        
+    <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
     </div>
 </body>
 </html>

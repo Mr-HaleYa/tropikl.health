@@ -24,6 +24,9 @@ require 'php/database.php';
 <body>
     <div class="wrap">
     <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
+    <div class="prog-bar">
+        <img class="prog-fish" src="./assets/emptyFish.svg" alt="">
+    </div>
     </div>
 </body>
 </html>

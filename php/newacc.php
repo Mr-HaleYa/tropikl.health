@@ -37,7 +37,7 @@ $pdo = Database::connect();
       $q = $pdo->prepare($sql);
       $q->execute(array($uname,$pass,$fname,$lname));
       Database::disconnect();
-      header("Location: ../");
+      header("Location: ../login.php?success=1");
 
     }
   }

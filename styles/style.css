@@ -179,7 +179,9 @@ h1 {
 .fish {
     z-index: 800;
     position: absolute;
+    width: 100px;
+    height: 100px;
     top: 0;
     left: 0;
-    transition: rotate .5s ease;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,.3));
 }

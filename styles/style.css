@@ -1,0 +1,11 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    background-color: green;
+}
+
+.wrap {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}

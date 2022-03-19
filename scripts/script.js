@@ -24,4 +24,10 @@ $(document).ready(function() {
     console.log(redFish)
     redFish.createFish();
     redFish.animate();
+    setInterval(() => {
+        console.log("interval");
+        console.log("xIncrement:" + redFish.xIncrement)
+        console.log("yIncrement:" + redFish.yIncrement)
+        redFish.updateVector();
+    }, 2000);
 });

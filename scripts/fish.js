@@ -33,7 +33,7 @@ export class Fish {
 
     this.currentVector = this.getRandomVector();
     this.xIncrement = this.currentVector.xDiff / this.currentVector.yDiff;
-    this.yIncrement = this.currentVector.yDiff / this.currentVector.xDiff;;
+    this.yIncrement = this.currentVector.yDiff / this.currentVector.xDiff;
 
     this.#animateID = requestAnimationFrame(() => { this.animate(); });
 
@@ -56,11 +56,16 @@ export class Fish {
     }
 
 
-    console.log(this.getRandomVector());
   }
 
   fillColor() {
     this.isColored = true;
+  }
+
+  updateVector() {
+    this.currentVector = this.getRandomVector()
+    this.xIncrement = this.currentVector.xDiff / this.currentVector.yDiff;
+    this.yIncrement = this.currentVector.yDiff / this.currentVector.xDiff;
   }
 
 

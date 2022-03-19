@@ -25,7 +25,7 @@ require 'php/database.php';
     <div class="wrap">
     <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
     <div class="prog-bar">
-        <img class="prog-fish" src="./assets/emptyFish.svg" alt="">
+        <img src="./assets/red-empty.png" alt="">
     </div>
     </div>
 </body>

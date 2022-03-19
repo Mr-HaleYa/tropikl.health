@@ -6,8 +6,10 @@ body, html {
 
 .wrap {
     height: 100vh;
+    width: 100vw;
     position: relative;
     background-color: #02a0e9;
+    overflow: hidden;
 }
 
 .bg-image {
@@ -22,5 +24,15 @@ body, html {
     position: absolute;
     top: 0;
     right: 0; 
-    max-width: 200px;
+    border: 2px solid black;
+    width: 15vh;
+    height: 3vh;
+}
+
+.prog-fish {
+    display: block;
+    height: 100%;
+    stroke-width: 2px;
+    fill: none;
+    filter: invert(19%) sepia(78%) saturate(6660%) hue-rotate(358deg) brightness(99%) contrast(124%);
 }

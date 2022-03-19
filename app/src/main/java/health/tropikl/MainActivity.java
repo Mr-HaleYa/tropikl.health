@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	protected void onResume() {
 		super.onResume();
+		myWebView.clearCache(true);
 		mHandler.postDelayed(() -> myWebView.reload(), 1000);
 	}
 

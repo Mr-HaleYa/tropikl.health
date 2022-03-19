@@ -18,7 +18,16 @@ require 'php/database.php';
     <script type="module" src="scripts/script.js" defer></script>
 
     <?php
-    echo " <link href='styles/style.css?". filemtime('styles/style.css') . "' rel='stylesheet'> ";
+    // Scripts
+    echo '
+        <script src="scripts/jquery-3.6.0.min.js?'. filemtime("scripts/jquery-3.6.0.min.js") . '" defer></script>
+        <script src="scripts/script.js?'. filemtime("scripts/script.js") . '" defer></script>
+    ';
+    // CSS
+    echo '
+        <link href="styles/style.css?'. filemtime("styles/style.css") . '" rel="stylesheet">
+    ';
+
     ?>
 
     <title>Tropikl</title>
@@ -27,7 +36,22 @@ require 'php/database.php';
     <div class="wrap">
     <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
     
-    <div class="prog-bar">
+    
+
+    <!-- Preloader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- end of preloader -->
+    <div class="wrap">
+        <div>
+            <button type="button">Login</button>
+        </div>
+        <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
+
+        <div class="prog-bar">
         <img class="redProg" src="./assets/red-empty.png" alt="">
         <img class="orangeProg" src="./assets/orange-empty.png" alt="">
         <img class="yellowProg" src="./assets/yellow-empty.png" alt="">
@@ -35,7 +59,8 @@ require 'php/database.php';
         <img class="bluePurpleProg" src="./assets/bluePurple-empty.png" alt="">
         <img class="brownProg" src="./assets/brown-empty.png" alt="">
 
-    </div>
+        </div>
     </div>
 </body>
+
 </html>

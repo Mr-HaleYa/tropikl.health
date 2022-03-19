@@ -23,4 +23,5 @@ $(document).ready(function() {
     let redFish = new Fish("red", 100, 100, wrap);
     console.log(redFish)
     redFish.createFish();
+    redFish.animate();
 });

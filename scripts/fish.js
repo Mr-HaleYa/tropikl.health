@@ -2,7 +2,7 @@ export class Fish {
   #animateID;
 
   constructor(fishColor, xPos, yPos, wrap){
-    this.fishElement = document.createElement("img");
+    this.fishElement;
     this.fishColor = fishColor;
     this.isColored = false;
     // Position
@@ -10,11 +10,35 @@ export class Fish {
     this.yPos = yPos;
     this.currentVector;
     this.orientation = 0 + 'deg';
+
     this.createFish = function(fishColor){
-      let newFishElement = document.createElement("img");
-      newFishElement.setAttribute('src', './assets/red-filled.png');
-      newFishElement.setAttribute('class', 'fish');
-      wrap.appendChild(newFishElement);
+      this.fishElement = document.createElement("img");
+      this.fishElement.setAttribute('src', './assets/red-filled.png');
+      this.fishElement.setAttribute('class', 'fish');
+      wrap.appendChild(this.fishElement);
+    }
+
+    this.xIncrement = .5;
+    this.yIncrement = .5;
+
+    this.#animateID = requestAnimationFrame(() => { this.animate(); });
+
+    this.animate = function(){
+        
+        
+        if(this.xPos > window.innerWidth - this.fishElement.offsetWidth || this.xPos < 0){
+          this.xIncrement = this.xIncrement * -1
+        }
+
+        if(this.yPos > window.innerHeight - this.fishElement.offsetHeight || this.yPos < 0){
+          this.yIncrement = this.yIncrement * -1
+        }
+
+        this.xPos += this.xIncrement;
+        this.yPos += this.yIncrement;
+        
+        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px)`;
+      this.#animateID = requestAnimationFrame(() => { this.animate(); });
     }
   }
 
@@ -22,8 +46,5 @@ export class Fish {
     this.isColored = true;
   }
 
-  // animate(){
 
-  //   this.#animateID = document.requestAnimationFrame(self.animate())
-  // }
 }

@@ -60,7 +60,7 @@ body {
 					if(isset($_GET['error'])){
 						if(($_GET['error'] == '1')){
 						echo '
-							<span> The Username is already taken.</span>
+							<span> The Username is already taken</span>
 						';
 						}
 					}

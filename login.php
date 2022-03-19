@@ -25,7 +25,7 @@ body {
 
 	<?php
 	    echo '
-	        <link href="styles/style.css?'. filemtime("styles/style.css") . '" rel="stylesheet">
+	        <link href="./styles/style.css?'. filemtime("styles/style.css") . '" rel="stylesheet">
 	    ';
 	?>
 
@@ -38,21 +38,19 @@ body {
 if ( isset($_COOKIE['username']) && isset($_COOKIE['passHash']) ){
 
 echo '
-	<div class="" >
-		<div class="" >
-			<div class="" >
-				<div class="" >
+	<div class="flex-wrap" >
+				<div class="form-wrap" >
 					<form id="resume-form" class="form" action="php/auth.php" method="post">
-						<div class="">
+						<div class="form-content-wrap">
 
-							<div class="">
+							<div class="logo">
 								<img src="assets/icon.png">
 							</div>
 
-							<div class="">
-								<h3 class="">Resume Session</h3>
+							<div class="login-wrap">
+								<h3 class="login">Resume Session</h3>
 							</div>
-							<div style="cursor: pointer; border: 2px solid #36b9cc" onClick="document.forms[\'resume-form\'].submit();" class="">
+							<div class="submit" style="cursor: pointer;" onClick="document.forms[\'resume-form\'].submit();" class="">
 								<div class="">
 ';
 
@@ -82,34 +80,32 @@ echo '					<div class="">
 						</div>
 					</form>
 				</div>
-			</div>
-		</div>
 	</div>
 ';
 
 } else {
 
 echo '
-	<div class="">
+	<div class="flex-wrap">
 		<div class="">
 			<div class="">
-				<div class="">
+				<div class="form-wrap">
 					<form id="login-form" class="form" action="php/auth.php" method="post">
-						<div class="">
+						<div class="form-content-wrap">
 
 							<div class="">
 								<img src="assets/icon.png">
 							</div>
 
-							<div class="">
-								<h3 class="">Login</h3>
+							<div class="login-wrap">
+								<h3 class="login">Login</h3>
 							</div>
 ';
 	if(isset($_GET['error'])){
 		if(($_GET['error'] == '1')){
 			echo '
-			<div class="">
-				<span> You entered invalid user name or password.</span>
+			<div class="error-user-pass">
+				<span> You entered invalid <br> username or password.</span>
 			</div>
 			';
 		}
@@ -117,38 +113,37 @@ echo '
 	if(isset($_GET['success'])){
 		if(($_GET['success'] == '1')){
 			echo '
-			<div class="">
+			<div class=".error-user-pass">
 				<span>Account created Successfully</br>Please Login</span>
 			</div>
 			';
 		}
 	}
 echo '
-							<div class="">
-								<div class="">
-									<label for="username" class="">Username</label>
+							<div class="username-field-wrap">
+								<div class="username-label-wrap">
+									<label for="username" class="username-label">Username</label>
 								</div>
-							</div>
-							<div class="">
+							
+							<div class="username">
 								<input type="text" name="username" id="username"">
 							</div>
-							<div class="">
-								<div class="">
-									<label for="password" class="">Password</label>
+							</div>
+							<div class="password-field-wrap">
+								<div class="password-label-wrap">
+									<label for="password" class="password-label">Password</label>
+								</div>
+								<div class="password">
+									<input type="password" name="password" id="password" >
 								</div>
 							</div>
-							<div class="">
-								<input type="password" name="password" id="password" >
-							</div>
 						</div>
-						<div class="">
-							<div class="">
-								<button class="" type="submit" name="login" value="login"><b>Login</b></button>
+							<div class="submit-wrapper">
+								<button class="submit" type="submit" name="login" value="login"><b>Login</b></button>
 							</div>
-						</div>
 					</form>
 					<div class="">
-						 <a href="./createacc" style="text-decoration: underline; color: inherit;">Need an Account</a>
+						 <a href="./createacc" style="font-style: italic; text-decoration: underline; color: inherit;">Need an Account?</a>
 					</div>
 				</div>
 			</div>

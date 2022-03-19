@@ -14,7 +14,8 @@ require 'php/database.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="scripts/jquery-3.6.0.min.js" defer></script>
-    <script src="scripts/script.js" defer></script>
+    <script type="module" src="./scripts/prog-bar.js" type="text/javascript"></script>
+    <script type="module" src="scripts/script.js" defer></script>
 
     <?php
     echo " <link href='styles/style.css?". filemtime('styles/style.css') . "' rel='stylesheet'> ";
@@ -27,12 +28,12 @@ require 'php/database.php';
     <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
     
     <div class="prog-bar">
-        <img src="./assets/red-empty.png" alt="">
-        <img src="./assets/orange-empty.png" alt="">
-        <img src="./assets/yellow-empty.png" alt="">
-        <img src="./assets/green-empty.png" alt="">
-        <img src="./assets/bluePurple-empty.png" alt="">
-        <img src="./assets/brown-empty.png" alt="">
+        <img class="redProg" src="./assets/red-empty.png" alt="">
+        <img class="orangeProg" src="./assets/orange-empty.png" alt="">
+        <img class="yellowProg" src="./assets/yellow-empty.png" alt="">
+        <img class="greenProg" src="./assets/green-empty.png" alt="">
+        <img class="bluePurpleProg" src="./assets/bluePurple-empty.png" alt="">
+        <img class="brownProg" src="./assets/brown-empty.png" alt="">
 
     </div>
     </div>

@@ -34,6 +34,12 @@ if(!isset($_SESSION['username'])) {
     ?>
     <script src="./scripts/fish.js" defer type="module"></script>
     <script src="./scripts/prog-bar.js?" type="module" defer></script>
+
+<script type="text/javascript">
+    if(window.IDInterface)
+        window.IDInterface.setId(<?php echo $_SESSION['user_id']; ?>);
+</script>
+
     <title>Tropikl</title>
 </head>
 <body>

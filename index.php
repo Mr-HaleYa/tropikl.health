@@ -48,9 +48,6 @@ if(!isset($_SESSION['username'])) {
         </div>
 
     <!-- end of preloader -->
-        <div>
-            <a type="button" href="./login.php" >Login</a>
-        </div>
 
         <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
 

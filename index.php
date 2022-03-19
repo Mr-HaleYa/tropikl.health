@@ -1,11 +1,14 @@
 <?php
 session_start();
 require 'php/database.php';
-//$pdo = Database::connect();
-// if(!isset($_SESSION['username'])) {
-//     header("Location: login");
-//     exit;
-// }
+
+$pdo = Database::connect();
+
+if(!isset($_SESSION['username'])) {
+    header("Location: login");
+    exit;
+}
+
 ?>
 
  

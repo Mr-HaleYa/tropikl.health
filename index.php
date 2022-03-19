@@ -14,14 +14,12 @@ require 'php/database.php';
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="module" src="./scripts/prog-bar.js" type="text/javascript"></script>
-    <script type="module" src="scripts/script.js" defer></script>
-
     <?php
     // Scripts
     echo '
         <script src="scripts/jquery-3.6.0.min.js?'. filemtime("scripts/jquery-3.6.0.min.js") . '" defer></script>
         <script src="scripts/script.js?'. filemtime("scripts/script.js") . '" defer></script>
+        <script src="./scripts/prog-bar.js?'. filemtime("scripts/prog-bar.js") . '" type="text/javascript" defer></script>
     ';
     // CSS
     echo '
@@ -29,6 +27,7 @@ require 'php/database.php';
     ';
 
     ?>
+
 
     <title>Tropikl</title>
 </head>

@@ -1,4 +1,4 @@
-import { ProgBar } from "./prog-bar.js"; './prog-bar.js';
+//import { ProgBar } from "./prog-bar.js";
 
 $(document).ready(function() {
 
@@ -14,7 +14,7 @@ $(document).ready(function() {
     setTimeout(function(){
         $('body').addClass('loaded');
         $('h1').css('color','#222222'); // change text color back after preload
-    }, 3000);
+    }, 1000);
 
     console.log(typeof ProgBar)
     let fishProgressBar = new ProgBar();

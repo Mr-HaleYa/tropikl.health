@@ -24,6 +24,7 @@ export class Fish {
       this.fillColor();
       this.fishElement.setAttribute('src', `./assets/${this.fishColor}${this.imgPath}`);
       this.fishElement.setAttribute('class', 'fish');
+      this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
       wrap.appendChild(this.fishElement);
     }
 
@@ -74,7 +75,6 @@ export class Fish {
         
         // Orient Fish Upright
         if(-Math.PI <= this.orientation && this.orientation <= -Math.PI / 2 || Math.PI / 2 <= this.orientation && this.orientation <= Math.PI){
-          console.log("ISFLIPPING")
           this.isFlip = -1;
         }
         else {

@@ -32,7 +32,8 @@ $(document).ready(function() {
     fishProgressBar.update(newFormat);
 
     var fishObjList = [];
-    let verticalOffset = 100;
+
+    let verticalOffset = window.innerHeight / colorStrings.length;
 
     // Timer
     var t = 5000;
@@ -42,12 +43,16 @@ $(document).ready(function() {
         t = t * 1.4;
     }
      
+    function changeVerticalOffset(){
+        verticalOffset += verticalOffset / 3;
+    }
 
     for (const key in newFormat) {
-        let newFish = new Fish(key, 100, verticalOffset + 100, wrap, newFormat[key]);
+        let newFish = new Fish(key, 100, verticalOffset, wrap, newFormat[key]);
         newFish.createFish();
         newFish.animate();
         changeTimer();
+        changeVerticalOffset();
         setInterval(() => {
             newFish.updateVector();
         }, t);

@@ -9,9 +9,26 @@ if(!isset($_SESSION['username'])) {
     exit;
 }
 
+$time = date("Y-m-d");;
+
+$sql = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' AND date='$time' ";
+$result = $pdo->query($sql);
+
+$temparray = array();
+while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+    $temparray[] = $row;
+}
+
+echo '
+<script defer>
+    var fishData = '.json_encode($temparray).';
+</script>
+';
+
+
 ?>
 
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +42,8 @@ if(!isset($_SESSION['username'])) {
     echo '
         <script src="scripts/jquery-3.6.0.min.js?'. filemtime("scripts/jquery-3.6.0.min.js") . '" defer></script>
         <script src="scripts/script.js?'. filemtime("scripts/script.js") . '" type="module" defer></script>
+        <script src="./scripts/fish.js?'. filemtime("scripts/fish.js") . '" defer type="module"></script>
+        <script src="./scripts/prog-bar.js?'. filemtime("scripts/prog-bar.js") . '" type="module" defer></script>
     ';
     // CSS
     echo '
@@ -32,8 +51,24 @@ if(!isset($_SESSION['username'])) {
     ';
 
     ?>
-    <script src="./scripts/fish.js" defer type="module"></script>
-    <script src="./scripts/prog-bar.js?" type="module" defer></script>
+
+<!-- <script defer>
+
+    var xReq = new XMLHttpRequest();
+    xReq.open("HEAD", "./scripts/fish.js", false);
+    xReq.send(null);
+    var lastModified = xReq.getResponseHeader("Last-Modified");
+    var myDate = new Date(lastModified);
+    var myEpoch = myDate.getTime()/1000.0;
+    document.write(myEpoch);
+
+</script> -->
+
+<script type="text/javascript">
+    if(window.IDInterface)
+        window.IDInterface.setId(<?php echo $_SESSION['user_id']; ?>);
+</script>
+
     <title>Tropikl</title>
 </head>
 <body>

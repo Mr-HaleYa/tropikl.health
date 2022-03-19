@@ -18,8 +18,7 @@ require 'php/database.php';
     // Scripts
     echo '
         <script src="scripts/jquery-3.6.0.min.js?'. filemtime("scripts/jquery-3.6.0.min.js") . '" defer></script>
-        <script src="scripts/script.js?'. filemtime("scripts/script.js") . '" defer></script>
-        <script src="./scripts/prog-bar.js?'. filemtime("scripts/prog-bar.js") . '" type="text/javascript" defer></script>
+        <script src="scripts/script.js?'. filemtime("scripts/script.js") . '" type="module" defer></script>
     ';
     // CSS
     echo '
@@ -28,7 +27,7 @@ require 'php/database.php';
 
     ?>
 
-
+    <script src="./scripts/prog-bar.js?" type="module" defer></script>
     <title>Tropikl</title>
 </head>
 <body>
@@ -37,17 +36,18 @@ require 'php/database.php';
     
     
 
-    <!-- Preloader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-    </div>
+        <!-- Preloader -->
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
+
     <!-- end of preloader -->
-    <div class="wrap">
         <div>
             <a type="button" href="./login.php" >Login</a>
         </div>
+
         <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
 
         <div class="prog-bar">

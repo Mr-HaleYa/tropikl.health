@@ -1,4 +1,4 @@
-//import { ProgBar } from "./prog-bar.js";
+import { ProgBar } from "./prog-bar.js";
 
 $(document).ready(function() {
 

@@ -11,7 +11,7 @@ require 'php/database.php';
     <meta charset="UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <?php
     // Scripts
     echo '
@@ -37,7 +37,7 @@ require 'php/database.php';
     <!-- end of preloader -->
     <div class="wrap">
         <div>
-            <button type="button">Login</button>
+            <a type="button" href="./login.php" >Login</a>
         </div>
         <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
 

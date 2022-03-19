@@ -29,63 +29,67 @@ body {
 
 </style>
 
+	<?php
+	    echo '
+	        <link href="styles/style.css?'. filemtime("styles/style.css") . '" rel="stylesheet">
+	    ';
+	?>
+
 </head>
 <body>
 
-
-<div class="" >
+<div class="flex-wrap">
+<div class="form-wrap" >
 	<form id="newacc-form" class="form" action="php/newacc.php" method="post">
 		<div class="">
 
-			<div class="">
-				<h3 class="">Create Account</h3>
+			<div class="login-wrap">
+				<h3 class="login">Create <br>Account</h3>
 			</div>
 
-			<div class="">
+			<div class="form-content-wrap">
 
-				<lable>First Name:
-					<input required name="first_name" id="fist_name" value="" type="text">
-				</label>
+				<div class="username-field-wrap">
+					<input required class="username" placeholder="First Name:"name="first_name" id="fist_name" value="" type="text">
+				</div>
 				</br>
 
-				<lable>Last Name:
-					<input required name="last_name" id="last_name" value="" type="text">
-				</label>
+				<div class="username-field-wrap">
+					<input required class="username" placeholder="Last Name:"name="last_name" id="last_name" value="" type="text">
+				</div>
 				</br>
 
-				<label>Username:
-					<input required minlength="4" name="username" id="username" value="" type="text">
-				</label>
+				<div class="username-field-wrap">
+					<input required class="username" placeholder="Username:" minlength="4" name="username" id="username" value="" type="text">
+				</div>
 				<?php 
 					if(isset($_GET['error'])){
 						if(($_GET['error'] == '1')){
-						echo '
+						echo '<div class=".error-user-pass">
 							<span> The Username is already taken</span>
+							</div>
 						';
 						}
 					}
 				?>
 				</br>
-
-				<label>Password :
-				  <input required minlength="5" name="password" id="password" type="password" onkeyup='check();' />
-				</label>
-
+					<div class="password-field-wrap">
+				  	<input class="password" required minlength="5" placeholder="Password:" name="password" id="password" type="password" onkeyup='check();' />
+					</div>
 				<br>
-
-				<label>Confirm Password:
-				  <input required minlength="5" type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' /> 
-				  <span id='message'></span>
-				</label>
+					<div class="password-field-wrap">
+				  	<input class="password" required minlength="5" placeholder="Confirm Password:" type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' /> 
+					</div>
 
 			</div>
+			<span id='message' class="error-user-pass"></span>
 		</div>
 		<div class="">
-			<button id="submitbutton" class="" disabled type="submit"><b>Create</b></button>
+			<button id="submitbutton" class="submit" disabled type="submit"><b>Create</b></button>
 		</div>
 	</form>
 </div>
-
+</div>
 
 
 <script type="text/javascript">

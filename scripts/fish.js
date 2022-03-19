@@ -6,20 +6,25 @@ export class Fish {
   vectorYMax = .3;
   
 
-  constructor(fishColor, xPos, yPos, wrap){
+  constructor(fishColor, xPos, yPos, wrap, isColored){
     this.fishElement;
     this.fishColor = fishColor;
-    this.isColored = false;
-    
+    this.imgPath = "-dull.png";
+    this.isColored = isColored;
+
     // Position
     this.xPos = xPos;
     this.yPos = yPos;
     this.orientation = Math.PI;
+    this.isFlip = 1;
 
+    // Creates DOM element
     this.createFish = function(fishColor){
       this.fishElement = document.createElement("img");
-      this.fishElement.setAttribute('src', `./assets/${this.fishColor}-filled.png`);
+      this.fillColor();
+      this.fishElement.setAttribute('src', `./assets/${this.fishColor}${this.imgPath}`);
       this.fishElement.setAttribute('class', 'fish');
+      this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
       wrap.appendChild(this.fishElement);
     }
 
@@ -33,19 +38,14 @@ export class Fish {
       vector.yDiff = Math.random() * (this.vectorYMax - this.vectorYMin) + this.vectorYMin;
       vector.xDiff = Math.random() * (this.vectorXMax - this.vectorXMin) + this.vectorXMin;
       
-      console.log("\n");
-      console.log("xDiff " + vector.xDiff)
-      console.log("yDiff " + vector.yDiff)
       if(Math.abs(vector.xDiff) <= Math.abs(vector.yDiff)){
-        console.log("less than")
         if(vector.xDiff < 0){
           vector.xDiff -= Math.abs(vector.yDiff)
         }
         else if(vector.xDiff >= 0){
           vector.xDiff += Math.abs(vector.yDiff)
         }
-        console.log("NEWxDiff " + vector.xDiff)
-        console.log("NEWyDiff " + vector.yDiff)
+        
       }
       
       vector.angle =  Math.atan2(vector.yDiff,  vector.xDiff);
@@ -68,11 +68,21 @@ export class Fish {
           this.yIncrement = this.yIncrement * -1;
         }
 
+        // Increment move Counters
         this.xPos += this.xIncrement;
         this.yPos += this.yIncrement;
         this.updateAngle();
         
-        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad)`;
+        // Orient Fish Upright
+        if(-Math.PI <= this.orientation && this.orientation <= -Math.PI / 2 || Math.PI / 2 <= this.orientation && this.orientation <= Math.PI){
+          this.isFlip = -1;
+        }
+        else {
+          this.isFlip = 1;
+        }
+        
+        // Actually move transform the elements
+        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
       this.#animateID = requestAnimationFrame(() => { this.animate(); });
     }
 
@@ -80,7 +90,12 @@ export class Fish {
   }
 
   fillColor() {
-    this.isColored = true;
+    if(this.isColored == 1) {
+      this.imgPath = "-colored.png";
+    }
+    else {
+      this.imgPath ="-dull.png";
+    }
   }
 
   updateVector() {
@@ -91,7 +106,7 @@ export class Fish {
   }
 
   updateAngle() {
-    this.orientation =  Math.atan2(this.yIncrement,  this.xIncrement) + Math.PI;
+    this.orientation =  Math.atan2(this.yIncrement,  this.xIncrement);
   }
 
 

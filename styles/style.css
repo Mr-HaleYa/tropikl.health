@@ -1,7 +1,7 @@
 body, html {
     padding: 0;
     margin: 0;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .wrap {
@@ -11,6 +11,76 @@ body, html {
     background-color: #02a0e9;
     overflow: hidden;
 }
+
+.flex-wrap {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #DED3BC;
+}
+
+.form-wrap {
+    border: 3px solid #fff;
+    width: 60vw;
+    height: 60vh;
+    color: #fff;
+    text-align: center;
+    background-color: #02a0e9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    border-radius: 5px;
+
+}
+
+.login {
+    text-transform: uppercase;
+    font-size: 2em;
+    margin: 1vh 1vh;
+}
+
+.submit {
+    margin: 2vh;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    padding: 1vh 2vw;
+    color: #fff;
+    background-color: #FB8C00;
+}
+
+.username, .password {
+    border: 3px solid #FB8C00;
+    border-radius: 5px;
+    width: 100%:
+}
+
+.username-field-wrap, .password-field-wrap {
+    max-width: 200px;
+}
+
+.username-label-wrap, .password-label-wrap {
+    text-align: left;
+}
+
+.form-content-wrap {
+    width: 60vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-user-pass, .not-me {
+    font-style: italic;
+    color: #000;
+}
+
+
 
 .bg-image {
     display: block;
@@ -179,7 +249,9 @@ h1 {
 .fish {
     z-index: 800;
     position: absolute;
+    width: 100px;
+    height: 100px;
     top: 0;
     left: 0;
-    transition: rotate .5s ease;
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,.3));
 }

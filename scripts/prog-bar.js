@@ -15,7 +15,7 @@ export class ProgBar {
         this.update = function(newList) {
             for(const key in newList){
                 let updateFish = document.querySelector("." + key + "Prog");
-                if(newList[key] === 1){
+                if(newList[key] == 1){
                     updateFish.setAttribute('src', `${this.dirSrc}${key}${this.filledFileExt}`);
                 }
                 else {

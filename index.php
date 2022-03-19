@@ -9,7 +9,9 @@ if(!isset($_SESSION['username'])) {
     exit;
 }
 
-$sql = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' ORDER BY id DESC LIMIT 1 ";
+$time = date("Y-m-d");
+
+$sql = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' AND date='$time' ORDER BY id DESC LIMIT 1 ";
 $result = $pdo->query($sql);
 
 $temparray = array();

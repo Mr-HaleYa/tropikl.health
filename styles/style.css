@@ -25,8 +25,12 @@ body, html {
     top: 0;
     right: 0; 
     border: 2px solid black;
-    width: 15vh;
     height: 3vh;
+    display: flex;
+    flex-direction: row;
+    padding: 1vh;
+    background-color: rgba(255, 255, 255, .7);
+    border: 1.5px solid #fff;
 }
 
 .prog-fish {
@@ -36,3 +40,4 @@ body, html {
     fill: none;
     filter: invert(19%) sepia(78%) saturate(6660%) hue-rotate(358deg) brightness(99%) contrast(124%);
 }
+

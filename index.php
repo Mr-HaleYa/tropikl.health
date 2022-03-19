@@ -24,8 +24,15 @@ require 'php/database.php';
 <body>
     <div class="wrap">
     <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
+    
     <div class="prog-bar">
         <img src="./assets/red-empty.png" alt="">
+        <img src="./assets/orange-empty.png" alt="">
+        <img src="./assets/yellow-empty.png" alt="">
+        <img src="./assets/green-empty.png" alt="">
+        <img src="./assets/bluePurple-empty.png" alt="">
+        <img src="./assets/brown-empty.png" alt="">
+
     </div>
     </div>
 </body>

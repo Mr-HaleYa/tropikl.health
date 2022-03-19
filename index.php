@@ -9,10 +9,16 @@ require 'php/database.php';
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="scripts/script.js" defer></script>
-    <link rel="stylesheet" href="styles/style.css" type="text/css">
+
+    <?php
+    echo " <link href='styles/style.css?". filemtime('styles/style.css') . "' rel='stylesheet'> ";
+    ?>
+
     <title>Tropikl</title>
 </head>
 <body>

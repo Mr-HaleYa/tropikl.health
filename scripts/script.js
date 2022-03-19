@@ -22,11 +22,17 @@ $(document).ready(function() {
 
     var newFormat = {}
 
-    for (const i of colorStrings){
-        newFormat[i] = fishData[0][i];
+    if(Object.keys(fishData.length == 0 || fishData[0]).length <= 1){
+        for (const i of colorStrings){
+            newFormat[i] = 0;
+        }
     }
-
-    console.log(newFormat)
+    else {
+        for (const i of colorStrings){
+            newFormat[i] = fishData[0][i];
+        }
+    }
+    
 
     let fishProgressBar = new ProgBar();
     fishProgressBar.update(newFormat);
@@ -40,7 +46,7 @@ $(document).ready(function() {
      
     // Function that changes the timer
     function changeTimer(){
-        t = t * 1.4;
+        t = t * 1.3;
     }
      
     function changeVerticalOffset(){
@@ -64,4 +70,24 @@ $(document).ready(function() {
     // setInterval(() => {
     //     redFish.updateVector();
     // }, 5000);
+
+    // $(".tooltip").hide();
+    let help = document.querySelector('.help');
+    help.onclick = function() {
+        var div = document.getElementById('tooltip');
+        if (div.style.display !== 'none') {
+            div.style.display = 'none';
+        }
+        else {
+            div.style.display = 'block';
+        }
+    };
+
+    // wrap.onclick = function() {
+    //     var div = document.getElementById('tooltip');
+    //     if (div.style.display !== 'none') {
+    //         div.style.display = 'none';
+    //     };
+    // }
+
 });

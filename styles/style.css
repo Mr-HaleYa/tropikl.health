@@ -56,7 +56,7 @@ body, html {
 .username, .password {
     border: 3px solid #FB8C00;
     border-radius: 5px;
-    width: 100%:
+    width: 100%;
 }
 
 .username-field-wrap, .password-field-wrap {
@@ -92,15 +92,17 @@ body, html {
 
 .prog-bar {
     position: absolute;
+    z-index: 900;
     top: 0;
-    right: 0; 
-    border: 2px solid black;
+    right: 0;
     height: 3vh;
     display: flex;
     flex-direction: row;
     padding: 1vh;
-    background-color: rgba(255, 255, 255, .7);
-    border: 1.5px solid #fff;
+    background-color: rgba(255, 255, 255, .8);
+    border-bottom-left-radius: 5px;
+    border-left: 1.5px solid #fff;
+    border-bottom: 1.5px solid #fff;
 }
 
 .prog-fish {
@@ -254,4 +256,39 @@ h1 {
     top: 0;
     left: 0;
     filter: drop-shadow(5px 5px 5px rgba(0,0,0,.3));
+}
+
+/* Help */
+.help {
+    position: absolute;
+    z-index: 900;
+    width: 5vw;
+    min-width: 20px;
+    min-height: 20px;
+    height: 5vw;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+}
+
+#tooltip {
+    position: absolute;
+    top: 6vh;
+    left: 2vw;
+    z-index: 900;
+    background: rgba(255, 255, 255, .8);
+    padding: 3vh;
+    width: 70vw;
+    height: 70vw;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+.logout {
+    color: #000;
+    font-style: italic;
 }

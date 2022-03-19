@@ -30,7 +30,7 @@ require 'php/database.php';
     ';
 
     ?>
-
+    <script src="./scripts/fish.js" defer type="module"></script>
     <script src="./scripts/prog-bar.js?" type="module" defer></script>
     <title>Tropikl</title>
 </head>

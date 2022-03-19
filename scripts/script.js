@@ -1,7 +1,8 @@
 import { ProgBar } from "./prog-bar.js";
+import { Fish } from "./fish.js";
 
 $(document).ready(function() {
-
+    let wrap = document.querySelector(".wrap");
     let testData = {
         "red": 0, 
         "orange": 1,
@@ -16,7 +17,10 @@ $(document).ready(function() {
         $('h1').css('color','#222222'); // change text color back after preload
     }, 1000);
 
-    console.log(typeof ProgBar)
     let fishProgressBar = new ProgBar();
     fishProgressBar.update(testData);
+
+    let redFish = new Fish("red", 100, 100, wrap);
+    console.log(redFish)
+    redFish.createFish();
 });

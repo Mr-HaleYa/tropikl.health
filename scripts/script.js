@@ -29,5 +29,5 @@ $(document).ready(function() {
         console.log("xIncrement:" + redFish.xIncrement)
         console.log("yIncrement:" + redFish.yIncrement)
         redFish.updateVector();
-    }, 2000);
+    }, 5000);
 });

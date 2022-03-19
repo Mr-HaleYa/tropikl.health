@@ -1,6 +1,8 @@
 export class Fish {
   #animateID;
-  vectorSize = 100;
+  vectorMax = 100;
+  vectorMin = -100;
+  
 
   constructor(fishColor, xPos, yPos, wrap){
     this.fishElement;
@@ -9,8 +11,7 @@ export class Fish {
     // Position
     this.xPos = xPos;
     this.yPos = yPos;
-  
-    this.orientation = 0 + 'deg';
+    this.orientation = Math.PI;
 
     this.createFish = function(fishColor){
       this.fishElement = document.createElement("img");
@@ -23,11 +24,12 @@ export class Fish {
       let vector = {
         xDiff: 0,
         yDiff: 0, 
+        angle: 0,
       }
 
-      vector.xDiff = Math.floor(Math.random() * this.vectorSize)
-      vector.yDiff = Math.floor(Math.random() * this.vectorSize)
-
+      vector.xDiff = Math.floor(Math.random() * (this.vectorMax - this.vectorMin + 1)) + this.vectorMin;
+      vector.yDiff = Math.floor(Math.random() * (this.vectorMax - this.vectorMin + 1)) + this.vectorMin;
+      vector.angle =  Math.atan2(vector.yDiff,  vector.xDiff);
       return vector;
     }
 
@@ -49,9 +51,9 @@ export class Fish {
 
         this.xPos += this.xIncrement;
         this.yPos += this.yIncrement;
-
+        this.updateAngle();
         
-        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px)`;
+        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad)`;
       this.#animateID = requestAnimationFrame(() => { this.animate(); });
     }
 
@@ -66,6 +68,11 @@ export class Fish {
     this.currentVector = this.getRandomVector()
     this.xIncrement = this.currentVector.xDiff / this.currentVector.yDiff;
     this.yIncrement = this.currentVector.yDiff / this.currentVector.xDiff;
+    this.updateAngle()
+  }
+
+  updateAngle() {
+    this.orientation =  Math.atan2(this.yIncrement,  this.xIncrement) + Math.PI;
   }
 
 

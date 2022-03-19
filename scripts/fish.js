@@ -24,8 +24,7 @@ export class Fish {
     this.#animateID = requestAnimationFrame(() => { this.animate(); });
 
     this.animate = function(){
-        
-        
+        // Keep in bounds
         if(this.xPos > window.innerWidth - this.fishElement.offsetWidth || this.xPos < 0){
           this.xIncrement = this.xIncrement * -1
         }
@@ -39,6 +38,16 @@ export class Fish {
         
         this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px)`;
       this.#animateID = requestAnimationFrame(() => { this.animate(); });
+    }
+
+    this.getRandomVector = () => {
+      let vector = {
+        xDiff: 30,
+        yDiff: 30, 
+        angle: Math.tan(yDiff/xDiff),
+      }
+
+      return vector;
     }
   }
 

@@ -111,8 +111,8 @@ echo '
         </div>
 
         <div class="score-board">
-            <h3 class="streak-label">All<br>Time:</h3><span class="streak">0</span>
-            <h3 class="score-label">Total<br>Score:</h3><span class="total-score">0</span>
+            <h3 class="streak-label">All<br>Time:</h3><span id="streak">0</span>
+            <h3 class="score-label">Total<br>Score:</h3><span id="total-score">0</span>
         </div>
 
         <div class="prog-bar">

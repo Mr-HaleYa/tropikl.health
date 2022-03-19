@@ -82,10 +82,10 @@ body {
 					</div>
 
 			</div>
-			<span id='message' class="error-user-pass"></span>
+			<span id='message' class="error-user-pass" style="font-weight: bold;"></span>
 		</div>
 		<div class="">
-			<button id="submitbutton" class="submit" disabled type="submit"><b>Create</b></button>
+			<button style="background-color: #c9a77d;" id="submitbutton" class="submit" disabled type="submit"><b>Create</b></button>
 		</div>
 	</form>
 </div>
@@ -100,10 +100,13 @@ var check = function() {
     document.getElementById('message').style.color = 'green';
     document.getElementById('message').innerHTML = 'Matching';
     document.getElementById('submitbutton').disabled = null;
+    document.getElementById('submitbutton').style.backgroundColor = '#FB8C00';
+
   } else {
     document.getElementById('message').style.color = 'red';
     document.getElementById('message').innerHTML = 'Not Matching';
     document.getElementById('submitbutton').disabled = 'disabled';
+    document.getElementById('submitbutton').style.backgroundColor = '#c9a77d';
   }
 }
 

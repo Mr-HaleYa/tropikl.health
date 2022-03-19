@@ -1,8 +1,10 @@
 <?php
 session_start();
+require 'php/database.php';
+//$pdo = Database::connect();
 ?>
 
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>

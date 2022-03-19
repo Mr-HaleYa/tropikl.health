@@ -3,8 +3,8 @@
 class Database {
 	private static $dbNom = 'u699663088_fishbowl' ;
 	private static $dbHost = 'localhost' ;
-	private static $dbUsername = 'root';
-	private static $dbUserPassword = '';
+	private static $dbUsername = 'u699663088_mrfish';
+	private static $dbUserPassword = 'Fishtaco7';
 
 	private static $cont  = null;
 	private static $cont2  = null;

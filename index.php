@@ -11,17 +11,30 @@ if(!isset($_SESSION['username'])) {
 
 $time = date("Y-m-d");
 
-$sql = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' AND date='$time' ORDER BY id DESC LIMIT 1 ";
-$result = $pdo->query($sql);
+$sql1 = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' AND date='$time' ORDER BY id DESC LIMIT 1 ";
+$result1 = $pdo->query($sql1);
 
-$temparray = array();
-while ($row = $result->fetch(PDO::FETCH_ASSOC)){
-    $temparray[] = $row;
+$sql2 = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."'";
+$result2 = $pdo->query($sql2);
+
+$sql3 = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' AND streak_goal ='1' ";
+$result3 = $pdo->query($sql3);
+
+$temparray1 = array();
+while ($row1 = $result1->fetch(PDO::FETCH_ASSOC)){
+    $temparray1[] = $row1;
 }
+
+
+$streakCount= count($result2->fetchAll(PDO::FETCH_ASSOC));
+
+$totalCount= count($result3->fetchAll(PDO::FETCH_ASSOC));
 
 echo '
 <script defer>
-    var fishData = '.json_encode($temparray).';
+    var fishData = '.json_encode($temparray1).';
+    var streakCount = '.$streakCount.';
+    var totalCount = '.$totalCount.';
 </script>
 ';
 
@@ -95,6 +108,11 @@ echo '
             <p class="help-text">Welcome to Tropikl! Our goal is to help you eat healthier every single day. We want to help you eat the rainbow! Download our app and track what colors of food you eat. Your fish friends will get prettier as you eat different colored foods. Try to eat at least one healthy food of each color every day and build your streak!</p>
             <img src="./assets/logo.png" alt="Tropikl Logo" class="login-logo">
             <span class="authors">~By: Kavika Faleumu, Koby Hale, and Chayse Thompson</span>
+        </div>
+
+        <div class="score-board">
+            <h3 class="streak-label">Current<br>Streak:</h3><span id="streak">0</span>
+            <h3 class="score-label">All<br>Time:</h3><span id="total-score">0</span>
         </div>
 
         <div class="prog-bar">

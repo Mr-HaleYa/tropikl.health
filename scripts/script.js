@@ -4,6 +4,7 @@ import { Fish } from "./fish.js";
 $(document).ready(function() {
     let wrap = document.querySelector(".wrap");
 
+    // preload
     setTimeout(function(){
         $('body').addClass('loaded');
         $('h1').css('color','#222222'); // change text color back after preload
@@ -22,6 +23,7 @@ $(document).ready(function() {
 
     var newFormat = {}
 
+    // If it is a new user with no data, render empty fish
     if(Object.keys(fishData.length == 0 || fishData[0]).length <= 1){
         for (const i of colorStrings){
             newFormat[i] = 0;
@@ -34,11 +36,11 @@ $(document).ready(function() {
     }
     
 
+    // init progress bar and update
     let fishProgressBar = new ProgBar();
     fishProgressBar.update(newFormat);
 
-    var fishObjList = [];
-
+    // Vertical offset init
     let verticalOffset = window.innerHeight / colorStrings.length;
 
     // Timer
@@ -48,11 +50,13 @@ $(document).ready(function() {
     function changeTimer(){
         t = t * 1.3;
     }
-     
+    
+    // Offset for the fish starting Pos
     function changeVerticalOffset(){
         verticalOffset += verticalOffset / 3;
     }
-
+    
+    // Generate all the fish
     for (const key in newFormat) {
         let newFish = new Fish(key, 100, verticalOffset, wrap, newFormat[key]);
         newFish.createFish();
@@ -63,15 +67,8 @@ $(document).ready(function() {
             newFish.updateVector();
         }, t);
     }
-    // let redFish = new Fish("red", 100, 100, wrap);
-    // console.log(redFish)
-    // redFish.createFish();
-    // redFish.animate();
-    // setInterval(() => {
-    //     redFish.updateVector();
-    // }, 5000);
-
-    // $(".tooltip").hide();
+   
+    // Help tooltip functionality
     let help = document.querySelector('.help');
     help.onclick = function() {
         var div = document.getElementById('tooltip');
@@ -82,6 +79,27 @@ $(document).ready(function() {
             div.style.display = 'block';
         }
     };
+
+    // Scoreboard update
+    let scoreboard = {
+        streak: document.querySelector("#streak"),
+        score: document.querySelector("#total-score"),
+    }
+    if (totalCount && streakCount){
+        scoreboard.score.textContent = totalCount;
+        scoreboard.streak.textContent = streakCount;
+    }
+
+    // Rainbow Fish
+    if (fishProgressBar.allComplete === true) {
+        let rainbowFish = new Fish("rainbow", 200, 200, wrap, 1);
+        rainbowFish.createFish();
+        rainbowFish.animate();
+        setInterval(() => {
+            rainbowFish.updateVector();
+        }, 7200);
+    }
+    
 
     // wrap.onclick = function() {
     //     var div = document.getElementById('tooltip');

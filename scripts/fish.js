@@ -20,12 +20,22 @@ export class Fish {
 
     // Creates DOM element
     this.createFish = function(fishColor){
-      this.fishElement = document.createElement("img");
-      this.fillColor();
-      this.fishElement.setAttribute('src', `./assets/${this.fishColor}${this.imgPath}`);
-      this.fishElement.setAttribute('class', 'fish');
-      this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
-      wrap.appendChild(this.fishElement);
+      if(this.fishColor == "rainbow"){
+        this.fishElement = document.createElement("img");
+        this.fishElement.setAttribute('src', './assets/rainbow2.png');
+        this.fishElement.setAttribute('class', 'fish');
+        this.fishElement.setAttribute('id', 'rainbow');
+        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
+        wrap.appendChild(this.fishElement);
+      } 
+      else {
+        this.fishElement = document.createElement("img");
+        this.fillColor();
+        this.fishElement.setAttribute('src', `./assets/${this.fishColor}${this.imgPath}`);
+        this.fishElement.setAttribute('class', 'fish');
+        this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
+        wrap.appendChild(this.fishElement);
+      }
     }
 
     this.getRandomVector = function(){

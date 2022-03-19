@@ -101,8 +101,17 @@ echo '
 	if(isset($_GET['error'])){
 		if(($_GET['error'] == '1')){
 			echo '
-			<div class="col-12">
+			<div class="">
 				<span> You entered invalid user name or password.</span>
+			</div>
+			';
+		}
+	}
+	if(isset($_GET['success'])){
+		if(($_GET['success'] == '1')){
+			echo '
+			<div class="">
+				<span>Account created Successfully</br>Please Login</span>
 			</div>
 			';
 		}

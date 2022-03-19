@@ -2,10 +2,10 @@ package health.tropikl;
 
 import androidx.appcompat.app.AppCompatActivity;
 import health.tropikl.models.requests.FishbowlPostRequest;
-import health.tropikl.services.FishbowlService;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -20,6 +20,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.NameValuePair;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.message.BasicNameValuePair;
+
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -77,7 +89,8 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 		Button mSubmitButton = findViewById(R.id.SubmitMealButton);
 		mSubmitButton.setOnClickListener(view -> {
 			FishbowlPostRequest fishbowlPostRequest = new FishbowlPostRequest(idValue, colors);
-			FishbowlService.PostToFishbowl(fishbowlPostRequest);
+			new SendToServer().execute();
+			//FishbowlService.PostToFishbowl(fishbowlPostRequest);
 		});
 
 		mClearButton = findViewById(R.id.ClearBucketButton);
@@ -208,5 +221,43 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 				break;
 		}
 		return getResources().getString(stringId);
+	}
+
+	class SendToServer extends AsyncTask<String, String, String>
+	{
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+		protected String doInBackground(String... args) {
+
+			// Building Parameters
+			String post = "user_id=" + idValue + "&";
+			List<String> colorStrings = new ArrayList<>();
+			colors.forEach((color) -> colorStrings.add(color + "=1"));
+			String colors = String.join("&",colorStrings);
+			post += colors;
+
+			OutputStream out = null;
+			try {
+				URL url = new URL("https://tropikl.health/php/datain.php");
+				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+				urlConnection.setRequestMethod("POST");
+				out = new BufferedOutputStream(urlConnection.getOutputStream());
+				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
+				writer.write(post);
+				writer.flush();
+				writer.close();
+				out.close();
+
+				urlConnection.connect();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+		protected void onPostExecute(String file_url) {
+			System.out.println("File URL: " + file_url);
+		}
 	}
 }

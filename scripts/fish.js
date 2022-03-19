@@ -35,6 +35,7 @@ export class Fish {
 
         this.xPos += this.xIncrement;
         this.yPos += this.yIncrement;
+
         
         this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px)`;
       this.#animateID = requestAnimationFrame(() => { this.animate(); });
@@ -44,11 +45,13 @@ export class Fish {
       let vector = {
         xDiff: 30,
         yDiff: 30, 
-        angle: Math.tan(yDiff/xDiff),
+        angle: Math.atan2(this.yDiff, this.xDiff) / Math.PI * 180,
       }
 
       return vector;
     }
+
+    console.log(this.getRandomVector());
   }
 
   fillColor() {

@@ -87,8 +87,6 @@ echo '					<div class="">
 
 echo '
 	<div class="flex-wrap">
-		<div class="">
-			<div class="">
 				<div class="form-wrap">
 					<form id="login-form" class="form" action="php/auth.php" method="post">
 						<div class="form-content-wrap">
@@ -146,8 +144,6 @@ echo '
 						 <a href="./createacc" style="font-style: italic; text-decoration: underline; color: inherit;">Need an Account?</a>
 					</div>
 				</div>
-			</div>
-		</div>
 	</div>
 ';
 }

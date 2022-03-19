@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
@@ -20,6 +19,8 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity
 {
 	final String WEBSITE_URL = "https://tropikl.health/";
+	final static String IDIntent = "ID INTENT";
+	int idValue = -1;
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -42,10 +43,12 @@ public class MainActivity extends AppCompatActivity
 		WebSettings webSettings = myWebView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		myWebView.addJavascriptInterface(new MainActivity(), "IDInterface");
+		myWebView.clearCache(true);
 
 		final Button mFeedFishButton = findViewById(R.id.feedFishButton);
 		mFeedFishButton.setOnClickListener(view -> {
 			Intent intent = new Intent(getApplicationContext(), FeedFishActivity.class);
+			intent.putExtra(IDIntent, idValue);
 			startActivity(intent);
 		});
 		WebViewDatabase myWebViewDB = WebViewDatabase.getInstance(getApplicationContext());
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity
 	@JavascriptInterface
 	public void setId(int id) {
 		// do something with the id
-		this.setId(id);
+		idValue = id;
+		System.out.println("Received id: " + idValue);
 	}
 }

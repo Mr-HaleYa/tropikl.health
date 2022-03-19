@@ -1,8 +1,11 @@
 package health.tropikl;
 
 import androidx.appcompat.app.AppCompatActivity;
+import health.tropikl.models.requests.FishbowlPostRequest;
+import health.tropikl.services.FishbowlService;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -23,14 +26,18 @@ import java.util.Objects;
 
 public class FeedFishActivity extends AppCompatActivity implements OnTouchListener, OnDragListener
 {
-	List<Integer> ids = new ArrayList<>();
+	List<String> colors = new ArrayList<>();
 	Button mClearButton;
 	boolean wasShown;
+	int idValue;
+	final static String IDIntent = "ID INTENT";
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		Intent mIntent = getIntent();
+		idValue = mIntent.getIntExtra(IDIntent, 0);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		Objects.requireNonNull(getSupportActionBar()).hide();
@@ -69,13 +76,14 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 
 		Button mSubmitButton = findViewById(R.id.SubmitMealButton);
 		mSubmitButton.setOnClickListener(view -> {
-			// TODO: Submit colors to DB
+			FishbowlPostRequest fishbowlPostRequest = new FishbowlPostRequest(idValue, colors);
+			FishbowlService.PostToFishbowl(fishbowlPostRequest);
 		});
 
 		mClearButton = findViewById(R.id.ClearBucketButton);
 		mClearButton.setOnClickListener(view -> {
-			if (ids.size() > 0) {
-				ids.clear();
+			if (colors.size() > 0) {
+				colors.clear();
 				for (ImageView imageView : imageViews) {
 					imageView.setVisibility(View.VISIBLE);
 				}
@@ -156,7 +164,7 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 					View view = (View) e.getLocalState();
 					if (e.getResult()) {
 						System.out.println("DROP SUCCESSFUL");
-						ids.add(view.getId());
+						colors.add(GetColorById(view.getId()));
 						mClearButton.setEnabled(true);
 					}
 					else {
@@ -170,5 +178,35 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 			}
 		}
 		return false;
+	}
+
+	@SuppressLint("NonConstantResourceId")
+	public String GetColorById(int id) {
+		int stringId;
+		switch(id) {
+			case R.id.circleRed:
+				stringId = R.string.Red;
+				break;
+			case R.id.circleOrange:
+				stringId = R.string.Orange;
+				break;
+			case R.id.circleYellow:
+				stringId = R.string.Yellow;
+				break;
+			case R.id.circleGreen:
+				stringId = R.string.Green;
+				break;
+			case R.id.circleBluPur:
+				stringId = R.string.BluePurple;
+				break;
+			case R.id.circleBrown:
+				stringId = R.string.Brown;
+				break;
+			default:
+				System.out.println("SELECTING COLOR IS BROKEN");
+				stringId = -1;
+				break;
+		}
+		return getResources().getString(stringId);
 	}
 }

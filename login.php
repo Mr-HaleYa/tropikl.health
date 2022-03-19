@@ -1,15 +1,14 @@
 <?php
 ob_start();
 session_start();
-require 'php/database.php';
+require './php/database.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
 
-	<script src="js/jquery351.min.js"></script>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,9 +39,7 @@ echo '
 						<div class="">
 
 							<div class="">
-								<a class="" href="../" style="text-decoration : none;">
-									<img src="assets/icon.png?'. filemtime('assets/icon.png') . '">
-								</a>
+								<img src="assets/icon.png">
 							</div>
 
 							<div class="">
@@ -50,9 +47,6 @@ echo '
 							</div>
 							<div style="cursor: pointer; border: 2px solid #36b9cc" onClick="document.forms[\'resume-form\'].submit();" class="">
 								<div class="">
-									<div class="">
-									<!-- would be image -->
-									</div>
 ';
 
 	$pdo = Database::connect();
@@ -97,9 +91,7 @@ echo '
 						<div class="">
 
 							<div class="">
-								<a class="" href="../" style="text-decoration : none;">
-									<img src="assets/icon.png?'. filemtime('assets/icon.png') . '">
-								</a>
+								<img src="assets/icon.png">
 							</div>
 
 							<div class="">
@@ -107,11 +99,13 @@ echo '
 							</div>
 ';
 	if(isset($_GET['error'])){
-		echo '
-		<div class="col-12">
-			<span> You entered invalid user name or password.</span>
-		</div>
-		';
+		if(($_GET['error'] == '1')){
+			echo '
+			<div class="col-12">
+				<span> You entered invalid user name or password.</span>
+			</div>
+			';
+		}
 	}
 echo '
 							<div class="">
@@ -133,12 +127,12 @@ echo '
 						</div>
 						<div class="">
 							<div class="">
-								<button class="" type="submit" name="login" value="login"><b>Login <i class="fas fa-sign-in-alt"></i></b></button>
+								<button class="" type="submit" name="login" value="login"><b>Login</b></button>
 							</div>
 						</div>
 					</form>
 					<div class="">
-						 <a href="./createacc.php" style="text-decoration: underline; color: inherit;">Need an Account</a>
+						 <a href="./createacc" style="text-decoration: underline; color: inherit;">Need an Account</a>
 					</div>
 				</div>
 			</div>

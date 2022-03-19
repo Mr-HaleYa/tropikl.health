@@ -9,7 +9,7 @@ if(!isset($_SESSION['username'])) {
     exit;
 }
 
-$time = date("Y-m-d");;
+$time = date("Y-m-d");
 
 $sql = "SELECT * from data WHERE user_id='".$_SESSION['user_id']."' AND date='$time' ";
 $result = $pdo->query($sql);

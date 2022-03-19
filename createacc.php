@@ -29,6 +29,12 @@ body {
 
 </style>
 
+	<?php
+	    echo '
+	        <link href="styles/style.css?'. filemtime("styles/style.css") . '" rel="stylesheet">
+	    ';
+	?>
+
 </head>
 <body>
 

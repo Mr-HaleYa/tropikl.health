@@ -37,8 +37,6 @@ $(document).ready(function() {
     let fishProgressBar = new ProgBar();
     fishProgressBar.update(newFormat);
 
-    var fishObjList = [];
-
     let verticalOffset = window.innerHeight / colorStrings.length;
 
     // Timer

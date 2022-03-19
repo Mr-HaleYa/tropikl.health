@@ -2,9 +2,6 @@
 session_start();
 include './database.php';
 
-$log = print_r(get_defined_vars(), true);
-file_put_contents('./log_'.date("j.n.Y").'.log', $log, FILE_APPEND);
-
 // array for JSON response
 $response = array();
 

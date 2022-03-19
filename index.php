@@ -75,7 +75,7 @@ echo '
     <div class="wrap">
     <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
     
-    
+
 
         <!-- Preloader -->
         <div id="loader-wrapper">
@@ -86,7 +86,16 @@ echo '
 
     <!-- end of preloader -->
 
-        <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
+        <img class="bg-image" src="./assets/tropiklBG.svg">
+        
+        
+        <img class="help" src="./assets/help.svg">
+        <div id="tooltip" style="display:none">
+            <a href="./php/logout" class="logout">LOGOUT</a>
+            <p class="help-text">Welcome to Tropikl! Our goal is to help you eat healthier every single day. We want to help you eat the rainbow! Download our app and track what colors of food you eat. Your fish friends will get prettier as you eat different colored foods. Try to eat at least one healthy food of each color every day and build your streak!</p>
+            <img src="./assets/logo.png" alt="Tropikl Logo" class="login-logo">
+            <span class="authors">~By: Kavika Faleumu, Koby Hale, and Chayse Thompson</span>
+        </div>
 
         <div class="prog-bar">
         <img class="redProg" src="./assets/red-empty.png" alt="">
@@ -95,7 +104,6 @@ echo '
         <img class="greenProg" src="./assets/green-empty.png" alt="">
         <img class="bluePurpleProg" src="./assets/bluePurple-empty.png" alt="">
         <img class="brownProg" src="./assets/brown-empty.png" alt="">
-
         </div>
     </div>
 </body>

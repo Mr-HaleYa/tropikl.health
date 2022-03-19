@@ -75,7 +75,7 @@ echo '					<div class="">
 						</div>
 						<div class="">
 							<div class="">
-								<button class="" type="submit" name="notme" value="notme"><b>Not Me</b></button>
+								<button class="not-me" type="submit" name="notme" value="notme"><b>Not Me</b></button>
 							</div>
 						</div>
 					</form>

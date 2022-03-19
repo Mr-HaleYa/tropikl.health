@@ -89,6 +89,16 @@ $(document).ready(function() {
         scoreboard.score.textContent = totalCount;
         scoreboard.streak.textContent = streakCount;
     }
+
+    // Rainbow Fish
+    if (fishProgressBar.allComplete === true) {
+        let rainbowFish = new Fish("rainbow", 200, 200, wrap, 1);
+        rainbowFish.createFish();
+        rainbowFish.animate();
+        setInterval(() => {
+            rainbowFish.updateVector();
+        }, 7200);
+    }
     
 
     // wrap.onclick = function() {

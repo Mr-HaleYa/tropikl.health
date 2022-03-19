@@ -54,8 +54,6 @@ body, html {
 }
 
 .username, .password {
-    border: 3px solid #FB8C00;
-    border-radius: 5px;
     width: 100%;
 }
 
@@ -262,10 +260,10 @@ h1 {
 .help {
     position: absolute;
     z-index: 900;
-    width: 5vw;
+    width: 6vh;
     min-width: 20px;
     min-height: 20px;
-    height: 5vw;
+    height: 6vh;
     top: 5px;
     left: 5px;
     cursor: pointer;
@@ -279,16 +277,31 @@ h1 {
     background: rgba(255, 255, 255, .8);
     padding: 3vh;
     width: 70vw;
-    height: 70vw;
+    height: 70vh;
     border-radius: 5px;
     box-shadow: 5px 5px 10px rgba(0,0,0,.3);
     display: flex;
     align-items: center;
     flex-direction: column;
     display: none;
+    max-height: 900px;
 }
 
 .logout {
     color: #000;
+    font-style: italic;
+}
+
+.login-logo {
+  width: 40vw;
+  max-width: 250px;
+  height: auto;
+  display: block;  
+  max-height: 150px;
+}
+
+.authors {
+    color: #000;
+    margin-top: 3vh;
     font-style: italic;
 }

@@ -43,8 +43,8 @@ echo '
 					<form id="resume-form" class="form" action="php/auth.php" method="post">
 						<div class="form-content-wrap">
 
-							<div class="logo">
-								<img src="assets/icon.png">
+							<div class="login-logo">
+								<img src="./assets/logo.png">
 							</div>
 
 							<div class="login-wrap">
@@ -94,7 +94,7 @@ echo '
 						<div class="form-content-wrap">
 
 							<div class="">
-								<img src="assets/icon.png">
+								<img class="login-logo" src="./assets/logo.png">
 							</div>
 
 							<div class="login-wrap">

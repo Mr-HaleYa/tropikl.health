@@ -10,6 +10,7 @@ export class Fish {
     this.fishElement;
     this.fishColor = fishColor;
     this.isColored = false;
+    
     // Position
     this.xPos = xPos;
     this.yPos = yPos;
@@ -17,7 +18,7 @@ export class Fish {
 
     this.createFish = function(fishColor){
       this.fishElement = document.createElement("img");
-      this.fishElement.setAttribute('src', './assets/red-filled.png');
+      this.fishElement.setAttribute('src', `./assets/${this.fishColor}-filled.png`);
       this.fishElement.setAttribute('class', 'fish');
       wrap.appendChild(this.fishElement);
     }

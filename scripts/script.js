@@ -20,11 +20,21 @@ $(document).ready(function() {
     let fishProgressBar = new ProgBar();
     fishProgressBar.update(testData);
 
-    let redFish = new Fish("red", 100, 100, wrap);
-    console.log(redFish)
-    redFish.createFish();
-    redFish.animate();
-    setInterval(() => {
-        redFish.updateVector();
-    }, 5000);
+
+    let verticalOffset = 100
+    for (const key in testData) {
+        let newFish = new Fish(key, 100, verticalOffset + 100, wrap);
+        newFish.createFish();
+        newFish.animate();
+        setInterval(() => {
+            newFish.updateVector();
+        }, 5000);
+    }
+    // let redFish = new Fish("red", 100, 100, wrap);
+    // console.log(redFish)
+    // redFish.createFish();
+    // redFish.animate();
+    // setInterval(() => {
+    //     redFish.updateVector();
+    // }, 5000);
 });

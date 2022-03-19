@@ -130,9 +130,6 @@ echo '
 							<div class="">
 								<input type="password" name="password" id="password" >
 							</div>
-							<div class="">
-								<input id="remember-me" name="remember-me" type="hidden">
-							</div>
 						</div>
 						<div class="">
 							<div class="">

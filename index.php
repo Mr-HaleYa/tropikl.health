@@ -11,7 +11,12 @@ require 'php/database.php';
     <meta charset="UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="module" src="./scripts/prog-bar.js" type="text/javascript"></script>
+    <script type="module" src="scripts/script.js" defer></script>
+
     <?php
     // Scripts
     echo '
@@ -28,6 +33,11 @@ require 'php/database.php';
     <title>Tropikl</title>
 </head>
 <body>
+    <div class="wrap">
+    <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
+    
+    
+
     <!-- Preloader -->
     <div id="loader-wrapper">
         <div id="loader"></div>
@@ -42,12 +52,12 @@ require 'php/database.php';
         <img class="bg-image" src="./assets/tropiklBG.svg" alt="">
 
         <div class="prog-bar">
-            <img src="./assets/red-empty.png" alt="">
-            <img src="./assets/orange-empty.png" alt="">
-            <img src="./assets/yellow-empty.png" alt="">
-            <img src="./assets/green-empty.png" alt="">
-            <img src="./assets/bluePurple-empty.png" alt="">
-            <img src="./assets/brown-empty.png" alt="">
+        <img class="redProg" src="./assets/red-empty.png" alt="">
+        <img class="orangeProg" src="./assets/orange-empty.png" alt="">
+        <img class="yellowProg" src="./assets/yellow-empty.png" alt="">
+        <img class="greenProg" src="./assets/green-empty.png" alt="">
+        <img class="bluePurpleProg" src="./assets/bluePurple-empty.png" alt="">
+        <img class="brownProg" src="./assets/brown-empty.png" alt="">
 
         </div>
     </div>

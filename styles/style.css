@@ -36,9 +36,7 @@ body, html {
 .prog-fish {
     display: block;
     height: 100%;
-    stroke-width: 2px;
-    fill: none;
-    filter: invert(19%) sepia(78%) saturate(6660%) hue-rotate(358deg) brightness(99%) contrast(124%);
+
 }
 
 

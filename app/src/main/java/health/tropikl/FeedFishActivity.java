@@ -20,18 +20,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpEntity;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpResponse;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.NameValuePair;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.entity.UrlEncodedFormEntity;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.methods.HttpPost;
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.HttpClients;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.message.BasicNameValuePair;
 
-import org.json.JSONObject;
-
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,6 +38,7 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 {
 	List<String> colors = new ArrayList<>();
 	Button mClearButton;
+	Button mSubmitButton;
 	boolean wasShown;
 	int idValue;
 	final static String IDIntent = "ID INTENT";
@@ -50,6 +49,7 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 		super.onCreate(savedInstanceState);
 		Intent mIntent = getIntent();
 		idValue = mIntent.getIntExtra(IDIntent, 0);
+		System.out.println("Received ID from Main: " + idValue);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		Objects.requireNonNull(getSupportActionBar()).hide();
@@ -86,10 +86,11 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 		imageViews.add(circleBluPur);
 		imageViews.add(circleBrown);
 
-		Button mSubmitButton = findViewById(R.id.SubmitMealButton);
+		mSubmitButton = findViewById(R.id.SubmitMealButton);
 		mSubmitButton.setOnClickListener(view -> {
 			FishbowlPostRequest fishbowlPostRequest = new FishbowlPostRequest(idValue, colors);
 			new SendToServer().execute();
+			finish();
 			//FishbowlService.PostToFishbowl(fishbowlPostRequest);
 		});
 
@@ -101,6 +102,7 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 					imageView.setVisibility(View.VISIBLE);
 				}
 				mClearButton.setEnabled(false);
+				mSubmitButton.setEnabled(false);
 			}
 		});
 	}
@@ -179,6 +181,7 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 						System.out.println("DROP SUCCESSFUL");
 						colors.add(GetColorById(view.getId()));
 						mClearButton.setEnabled(true);
+						mSubmitButton.setEnabled(true);
 					}
 					else {
 						System.out.println("DROP FAILED");
@@ -230,14 +233,33 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 			super.onPreExecute();
 		}
 		protected String doInBackground(String... args) {
+			try {
+				HttpClient httpclient = HttpClients.createDefault();
+				HttpPost httppost = new HttpPost("https://tropikl.health/php/datain.php");
 
-			// Building Parameters
-			String post = "user_id=" + idValue + "&";
-			List<String> colorStrings = new ArrayList<>();
-			colors.forEach((color) -> colorStrings.add(color + "=1"));
-			String colors = String.join("&",colorStrings);
-			post += colors;
+				// Request parameters and other properties.
+				List<NameValuePair> params = new ArrayList<>();
+				params.add(new BasicNameValuePair("user_id", Integer.toString(idValue)));
+				for (String color : colors) {
+					params.add(new BasicNameValuePair(color, "1"));
+				}
+				httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 
+				//Execute and get the response.
+				HttpResponse response = httpclient.execute(httppost);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					try (InputStream instream = entity.getContent()) {
+						// do something useful
+						System.out.println("WE WIN");
+					}
+				}
+			}
+			catch (Exception e) {
+				System.out.println("ERROR HTTP :(");
+				e.printStackTrace();
+			}
+			/*
 			OutputStream out = null;
 			try {
 				URL url = new URL("https://tropikl.health/php/datain.php");
@@ -249,15 +271,15 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 				writer.flush();
 				writer.close();
 				out.close();
-
 				urlConnection.connect();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			*/
 			return null;
 		}
 		protected void onPostExecute(String file_url) {
-			System.out.println("File URL: " + file_url);
+			System.out.println("Finished Async Task");
 		}
 	}
 }

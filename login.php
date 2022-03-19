@@ -40,7 +40,7 @@ echo '
 
 							<div class="">
 								<a class="" href="../" style="text-decoration : none;">
-									<img src="assets/icon.png?'. filemtime('assets/icon.png') . '">
+									<img src="assets/icon.png">
 								</a>
 							</div>
 
@@ -97,7 +97,7 @@ echo '
 
 							<div class="">
 								<a class="" href="../" style="text-decoration : none;">
-									<img src="assets/icon.png?'. filemtime('assets/icon.png') . '">
+									<img src="assets/icon.png">
 								</a>
 							</div>
 
@@ -132,12 +132,12 @@ echo '
 						</div>
 						<div class="">
 							<div class="">
-								<button class="" type="submit" name="login" value="login"><b>Login <i class="fas fa-sign-in-alt"></i></b></button>
+								<button class="" type="submit" name="login" value="login"><b>Login</b></button>
 							</div>
 						</div>
 					</form>
 					<div class="">
-						 <a href="./createacc.php" style="text-decoration: underline; color: inherit;">Need an Account</a>
+						 <a href="./createacc" style="text-decoration: underline; color: inherit;">Need an Account</a>
 					</div>
 				</div>
 			</div>

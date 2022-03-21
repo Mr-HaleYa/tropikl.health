@@ -118,7 +118,7 @@ echo '
             <a href="./php/logout" class="logout">LOGOUT</a>
             <p class="help-text">Welcome to Tropikl! Our goal is to help you eat healthier every single day. We want to help you eat the rainbow! Download our app and track what colors of food you eat. Your fish friends will get prettier as you eat different colored foods. Try to eat at least one healthy food of each color every day and build your streak!</p>
             <img src="./assets/logo.png" alt="Tropikl Logo" class="login-logo">
-            <span class="authors">~By: Kavika Faleumu, Koby Hale, and Chayse Thompson</span>
+            <span class="authors">~By: Kavika Faleumu, Koby Hale, and Chayse Thompson</br>AKA Team Room0x174</span>
         </div>
 
         <div class="score-board">

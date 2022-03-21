@@ -24,7 +24,7 @@ $pdo = Database::connect();
     } else {
 
       // keep track post values
-      $uname = $_POST['username'];
+      $uname = strtolower($_POST['username']);
       $pass = md5($_POST['password']);
       $fname = $_POST['first_name'];
       $lname = $_POST['last_name'];

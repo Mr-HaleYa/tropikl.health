@@ -53,11 +53,15 @@ body {
 	<form id="newacc-form" class="form" action="php/newacc.php" method="post">
 		<div class="">
 
-			<div class="login-wrap">
-				<h3 class="login">Create <br>Account</h3>
-			</div>
-
 			<div class="form-content-wrap">
+
+				<div>
+					<img class="login-logo" src="./assets/logo.png">
+				</div>
+
+				<div class="login-wrap">
+					<h3 class="login">Create <br>Account</h3>
+				</div>
 
 				<div class="username-field-wrap">
 					<input required class="username" placeholder="First Name:"name="first_name" id="fist_name" value="" type="text">

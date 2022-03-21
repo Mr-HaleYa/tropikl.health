@@ -2,6 +2,7 @@ package health.tropikl;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -22,9 +24,10 @@ public class MainActivity extends AppCompatActivity
 {
 	final String WEBSITE_URL = "https://tropikl.health/";
 	final static String IDIntent = "ID INTENT";
-	static int idValue;
+	static int idValue = -1;
 	WebView myWebView;
 	final private Handler mHandler = new Handler();
+	Button mFeedFishButton;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -35,6 +38,15 @@ public class MainActivity extends AppCompatActivity
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		Objects.requireNonNull(getSupportActionBar()).hide();
 		setContentView(R.layout.activity_main);
+
+		mFeedFishButton = findViewById(R.id.feedFishButton);
+		mFeedFishButton.setOnClickListener(view -> {
+			Intent intent = new Intent(getApplicationContext(), FeedFishActivity.class);
+			System.out.println("Adding intent id: " + idValue);
+			intent.putExtra(IDIntent, idValue);
+			startActivity(intent);
+		});
+
 		myWebView = findViewById(R.id.webView);
 		myWebView.setWebViewClient(new WebViewClient() {
 			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request){
@@ -48,13 +60,13 @@ public class MainActivity extends AppCompatActivity
 		myWebView.addJavascriptInterface(new MainActivity(), "IDInterface");
 		myWebView.clearCache(true);
 
-		final Button mFeedFishButton = findViewById(R.id.feedFishButton);
-		mFeedFishButton.setOnClickListener(view -> {
-			Intent intent = new Intent(getApplicationContext(), FeedFishActivity.class);
-			System.out.println("Adding intent id: " + idValue);
-			intent.putExtra(IDIntent, idValue);
-			startActivity(intent);
-		});
+		handleButton();
+	}
+
+	private void handleButton() {
+		mFeedFishButton.setAlpha(0);
+		ViewCompat.animate(mFeedFishButton).setStartDelay(3500).alpha(1).setDuration(700)
+				.setInterpolator(new DecelerateInterpolator(1.2f)).start();
 	}
 
 	@Override
@@ -62,6 +74,7 @@ public class MainActivity extends AppCompatActivity
 		super.onResume();
 		myWebView.clearCache(true);
 		mHandler.postDelayed(() -> myWebView.reload(), 1000);
+		handleButton();
 	}
 
 	@Override

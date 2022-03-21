@@ -1,8 +1,10 @@
 package health.tropikl;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,6 +69,17 @@ public class MainActivity extends AppCompatActivity
 		super.onResume();
 		myWebView.clearCache(true);
 		mHandler.postDelayed(() -> myWebView.reload(), 1000);
+	}
+
+	@Override
+	public void onBackPressed() {
+		new AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle("Closing Activity")
+				.setMessage("Are you sure you want to close this activity?")
+				.setPositiveButton("Yes", (dialog, which) -> finish())
+				.setNegativeButton("No", null)
+				.show();
 	}
 
 	@JavascriptInterface

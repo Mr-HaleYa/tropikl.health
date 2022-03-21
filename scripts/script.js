@@ -92,7 +92,7 @@ $(document).ready(function() {
 
     // Rainbow Fish
     if (fishProgressBar.allComplete === true) {
-        let rainbowFish = new Fish("rainbow", 200, 200, wrap, 1);
+        let rainbowFish = new Fish("rainbow", 50, 50, wrap, 1);
         rainbowFish.createFish();
         rainbowFish.animate();
         setInterval(() => {

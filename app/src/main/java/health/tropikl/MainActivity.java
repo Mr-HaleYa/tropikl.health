@@ -4,17 +4,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebViewDatabase;
 import android.widget.Button;
 
 import java.util.Objects;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity
 	final static String IDIntent = "ID INTENT";
 	static int idValue;
 	WebView myWebView;
-	private Handler mHandler = new Handler();
+	final private Handler mHandler = new Handler();
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -38,11 +37,8 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 		myWebView = findViewById(R.id.webView);
 		myWebView.setWebViewClient(new WebViewClient() {
-			public boolean shouldOverrideUrlLoading(WebView view, String url){
-				// do your handling codes here, which url is the requested url
-				// probably you need to open that url rather than redirect:
-				view.loadUrl(url);
-				return false; // then it is not handled by default action
+			public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request){
+				return true;
 			}
 		});
 		myWebView.loadUrl(WEBSITE_URL);
@@ -59,9 +55,6 @@ public class MainActivity extends AppCompatActivity
 			intent.putExtra(IDIntent, idValue);
 			startActivity(intent);
 		});
-		WebViewDatabase myWebViewDB = WebViewDatabase.getInstance(getApplicationContext());
-		boolean hasAuth = myWebViewDB.hasFormData();
-		System.out.println("Has Form Data? " + hasAuth);
 	}
 
 	@Override
@@ -82,6 +75,7 @@ public class MainActivity extends AppCompatActivity
 				.show();
 	}
 
+	// This function is for the PHP to pass the user_id back to the app
 	@JavascriptInterface
 	public void setId(int id) {
 		// do something with the id

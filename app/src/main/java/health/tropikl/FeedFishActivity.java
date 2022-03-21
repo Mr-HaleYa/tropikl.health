@@ -1,7 +1,6 @@
 package health.tropikl;
 
 import androidx.appcompat.app.AppCompatActivity;
-import health.tropikl.models.requests.FishbowlPostRequest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -29,19 +28,19 @@ import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.m
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.impl.client.HttpClients;
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.message.BasicNameValuePair;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class FeedFishActivity extends AppCompatActivity implements OnTouchListener, OnDragListener
 {
-	List<String> colors = new ArrayList<>();
+	static List<String> colors = new ArrayList<>();
 	Button mClearButton;
 	Button mSubmitButton;
 	boolean wasShown;
-	int idValue;
+	static int idValue;
 	final static String IDIntent = "ID INTENT";
+	final static String LINK_TO_DB = "https://tropikl.health/php/datain.php";
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -88,7 +87,6 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 
 		mSubmitButton = findViewById(R.id.SubmitMealButton);
 		mSubmitButton.setOnClickListener(view -> {
-			FishbowlPostRequest fishbowlPostRequest = new FishbowlPostRequest(idValue, colors);
 			new SendToServer().execute();
 			finish();
 			//FishbowlService.PostToFishbowl(fishbowlPostRequest);
@@ -226,7 +224,8 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 		return getResources().getString(stringId);
 	}
 
-	class SendToServer extends AsyncTask<String, String, String>
+	// Probably don't need an AsyncTask in the future
+	static class SendToServer extends AsyncTask<String, String, String>
 	{
 		@Override
 		protected void onPreExecute() {
@@ -235,7 +234,7 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 		protected String doInBackground(String... args) {
 			try {
 				HttpClient httpclient = HttpClients.createDefault();
-				HttpPost httppost = new HttpPost("https://tropikl.health/php/datain.php");
+				HttpPost httppost = new HttpPost(LINK_TO_DB);
 
 				// Request parameters and other properties.
 				List<NameValuePair> params = new ArrayList<>();
@@ -249,33 +248,13 @@ public class FeedFishActivity extends AppCompatActivity implements OnTouchListen
 				HttpResponse response = httpclient.execute(httppost);
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
-					try (InputStream instream = entity.getContent()) {
-						// do something useful
-						System.out.println("WE WIN");
-					}
+					System.out.println("Success");
 				}
 			}
 			catch (Exception e) {
 				System.out.println("ERROR HTTP :(");
 				e.printStackTrace();
 			}
-			/*
-			OutputStream out = null;
-			try {
-				URL url = new URL("https://tropikl.health/php/datain.php");
-				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-				urlConnection.setRequestMethod("POST");
-				out = new BufferedOutputStream(urlConnection.getOutputStream());
-				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
-				writer.write(post);
-				writer.flush();
-				writer.close();
-				out.close();
-				urlConnection.connect();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			*/
 			return null;
 		}
 		protected void onPostExecute(String file_url) {

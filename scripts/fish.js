@@ -22,7 +22,8 @@ export class Fish {
     this.createFish = function(fishColor){
       if(this.fishColor == "rainbow"){
         this.fishElement = document.createElement("img");
-        this.fishElement.setAttribute('src', './assets/rainbow2.png');
+        let timestamps = this.getTimeStamp('rainbow2.png');
+        this.fishElement.setAttribute('src', `./assets/rainbow2.png${timestamps}`);
         this.fishElement.setAttribute('class', 'fish');
         this.fishElement.setAttribute('id', 'rainbow');
         this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
@@ -31,12 +32,24 @@ export class Fish {
       else {
         this.fishElement = document.createElement("img");
         this.fillColor();
-        this.fishElement.setAttribute('src', `./assets/${this.fishColor}${this.imgPath}`);
+        let timestamps = this.getTimeStamp(this.fishColor + this.imgPath);
+        this.fishElement.setAttribute('src', `./assets/${this.fishColor}${this.imgPath}${timestamps}`);
         this.fishElement.setAttribute('class', 'fish');
         this.fishElement.style.transform = `translateX(${this.xPos}px) translateY(${this.yPos}px) rotate(${this.orientation}rad) scaleY(${this.isFlip})`;
         wrap.appendChild(this.fishElement);
       }
     }
+
+    this.getTimeStamp = function(location){
+      let xReq = new XMLHttpRequest();
+      xReq.open("HEAD", './assets/' + location, false);
+      xReq.send(null);
+      let lastModified = xReq.getResponseHeader("Last-Modified");
+      let myDate = new Date(lastModified);
+      let myEpoch = myDate.getTime()/1000.0;
+      return '?' + myEpoch;
+    }
+
 
     this.getRandomVector = function(){
       let vector = {

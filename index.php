@@ -77,6 +77,17 @@ echo '
 
 </script> -->
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+
 <script type="text/javascript">
     if(window.IDInterface)
         window.IDInterface.setId(<?php echo $_SESSION['user_id']; ?>);
@@ -107,7 +118,7 @@ echo '
             <a href="./php/logout" class="logout">LOGOUT</a>
             <p class="help-text">Welcome to Tropikl! Our goal is to help you eat healthier every single day. We want to help you eat the rainbow! Download our app and track what colors of food you eat. Your fish friends will get prettier as you eat different colored foods. Try to eat at least one healthy food of each color every day and build your streak!</p>
             <img src="./assets/logo.png" alt="Tropikl Logo" class="login-logo">
-            <span class="authors">~By: Kavika Faleumu, Koby Hale, and Chayse Thompson</span>
+            <span class="authors">~By: Kavika Faleumu, Koby Hale, and Chayse Thompson</br>AKA Team Room0x174</span>
         </div>
 
         <div class="score-board">
